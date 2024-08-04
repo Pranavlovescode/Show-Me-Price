@@ -28,7 +28,7 @@ export default function Home() {
 
   const predictPrice = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("https://mumbai-house-price-predictor-mauq.onrender.com/predict-price", {
+    const response = await fetch("http://127.0.0.1:5000/predict-price", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function Home() {
 
   const getLocations = async () => {
     try {
-      const res = await fetch("https://mumbai-house-price-predictor-mauq.onrender.com/");
+      const res = await fetch("http://127.0.0.1:5000/");
       const data = await res.json();
       setLocation(data);
     } catch (error) {

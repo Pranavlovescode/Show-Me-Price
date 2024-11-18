@@ -15,6 +15,7 @@
 
 # env file
 /backend/env
+/backend/.venv
 
 
 # production

@@ -8,12 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-with open('mumbai_house_prices_model.pkl','rb') as f:
-    price_model = pickle.load(f)
 
-with open('columns.json','r') as f:
-    data_columns = json.load(f)['data_columns']
-    loc = data_columns[4:]
 
 # print(loc)
 
@@ -58,6 +53,12 @@ def model():
 
 @app.route('/',methods=['GET'])
 def get_location():
+    with open('mumbai_house_prices_model.pkl','rb') as f:
+        price_model = pickle.load(f)
+
+    with open('columns.json','r') as f:
+        data_columns = json.load(f)['data_columns']
+        loc = data_columns[4:]
     return jsonify({'locations':loc})
 
 if __name__ == '__main__':

@@ -28,21 +28,21 @@ export default function Home() {
 
   const predictPrice = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("http://127.0.0.1:5000/predict-price", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/predict-price`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formContent),
     });
-
+    console.log("The form content is: ",formContent)
     const res = await response.json();
     setPredPrice(res.predicted_price);
   };
 
   const getLocations = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}`);
       const data = await res.json();
       setLocation(data);
     } catch (error) {

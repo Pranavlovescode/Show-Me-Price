@@ -24,12 +24,19 @@ encondings = {
 
 @app.route('/predict-price',methods=['POST','GET'])
 def model():
+    with open('mumbai_house_prices_model.pkl','rb') as f:
+        price_model = pickle.load(f)
+
+    with open('columns.json','r') as f:
+        data_columns = json.load(f)['data_columns']
+        loc = data_columns[4:]
+        
     location = request.json.get('location')
     area = request.json.get('area')
     bhk = request.json.get('bhk')
     status = encondings[request.json.get('status')]
     age = encondings[request.json.get('age')]
-    
+    print(location,area,bhk,status,age)
     if location =='Andheri West':
         x = np.zeros(len(data_columns))
         x[0] = bhk

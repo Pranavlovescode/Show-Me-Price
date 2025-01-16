@@ -28,7 +28,7 @@ export default function Home() {
 
   const predictPrice = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch(`${process.env.NODE_ENV=="production"}/predict-price`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/predict-price`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function Home() {
 
   const getLocations = async () => {
     try {
-      const res = await fetch(`${process.env.NODE_ENV=="production"}`);
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}`);
       const data = await res.json();
       setLocation(data);
     } catch (error) {

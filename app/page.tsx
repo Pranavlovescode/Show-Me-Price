@@ -38,7 +38,7 @@ export default function Home() {
     console.log("The form content is: ",formContent)
     const res = await response.json();
     console.log(res)
-    setPredPrice(res.predicted_price);
+    setPredPrice(res.predicted_price)
   };
 
   const getLocations = async () => {
